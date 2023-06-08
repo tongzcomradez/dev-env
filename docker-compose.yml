@@ -2,6 +2,7 @@ version: "3"
 services:
   rabbitmq:
     image: bitnami/rabbitmq:latest
+    restart: unless-stopped
     environment:
       - RABBITMQ_NODE_PORT_NUMBER=5672
       - RABBITMQ_DEFAULT_VHOST=/
