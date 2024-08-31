@@ -2,6 +2,7 @@ version: "3"
 services:
   rabbitmq:
     image: bitnami/rabbitmq:latest
+    restart: unless-stopped
     environment:
       - RABBITMQ_NODE_PORT_NUMBER=5672
       - RABBITMQ_DEFAULT_VHOST=/
@@ -12,12 +13,12 @@ services:
       - 5672:5672
       
   mongo:
-    image: mongo
-    restart: unless-stopped
+    image: mongo:7.0.3
+    restart: always
     ports:
       - 27017:27017
-    #volumes:
-    #  - ./mongo/data/db:/data/db
+    volumes:
+      - ./mongo/data/db:/data/db
       
   redis:
     image: redis
